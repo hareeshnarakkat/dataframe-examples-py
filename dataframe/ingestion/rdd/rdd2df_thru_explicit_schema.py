@@ -60,7 +60,7 @@ if __name__ == '__main__':
     txn_fct_df.printSchema()
     txn_fct_df.show(5, False)
 
-    print("# of records = " + str(txn_fct_df.count()))
+    print("# of records = ", txn_fct_df.count())
     print("# of merchants = " + str(txn_fct_df.select(txn_fct_df["merchant_id"]).distinct().count()))
 
     txnAggDf = txn_fct_df \
@@ -69,6 +69,10 @@ if __name__ == '__main__':
         .agg(sum("amount"), approx_count_distinct("status"))
 
     txnAggDf.show(5, False)
+
+#   .repartition(10)
+#   .repartition(txn_fct_df["merchant_id"])
+#   .repartition(10, txn_fct_df["merchant_id"])
 
     txnAggDf = txnAggDf \
         .withColumnRenamed("sum(amount)", "total_amount") \
