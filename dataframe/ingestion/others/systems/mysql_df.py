@@ -47,4 +47,10 @@ if __name__ == '__main__':
 
     txnDF.show()
 
+    txnDF \
+        .write \
+        .partitionBy("Location_External_Reference") \
+        .mode("overwrite") \
+        .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/txn_sync")
+
 # spark-submit --packages "mysql:mysql-connector-java:8.0.15" dataframe/ingestion/others/systems/mysql_df.py
