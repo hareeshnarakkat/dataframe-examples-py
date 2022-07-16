@@ -11,7 +11,7 @@ if __name__ == '__main__':
         .getOrCreate()
     spark.sparkContext.setLogLevel('ERROR')
 
-    def initcap(line: str):
+    def initcappp(line: str):
         lst = line.split(" ")
         return ' '.join(list(map(str.capitalize, lst)))
 
@@ -23,10 +23,10 @@ if __name__ == '__main__':
 
     # Register: Method1
     initcap_udf1 = spark.udf\
-        .register("initcap", initcap, StringType())
+        .register("initcap", initcappp, StringType())
 
     # Register: Method2
-    initcap_udf2 = udf(initcap, StringType())
+    initcap_udf2 = udf(initcappp, StringType())
 
     # Register: Method3
     initcap_udf3 = spark.udf\

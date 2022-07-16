@@ -51,11 +51,13 @@ if __name__ == '__main__':
     corrected_people_df \
         .filter(lower(col("jobType")).isin(["chemical engineer", "abc", "teacher"])) \
         .show()
+    # def filter_jobtype(joblist: list):
 
     # Without List
     corrected_people_df\
         .filter(lower(col("jobType")).isin("chemical engineer", "teacher"))\
         .show()
+    # def filter_jobtype(*joblist):
 
     # Exclusion
     corrected_people_df \
